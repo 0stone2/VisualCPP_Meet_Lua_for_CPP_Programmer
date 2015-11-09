@@ -173,7 +173,7 @@ void CLuaSampleDlg::OnBnClickedExample01Button()
 		m_pLuaState = luaL_newstate();
 		if (NULL == m_pLuaState) __leave;
 
-		if (luaL_dofile(m_pLuaState, "Sample01.lua")) {
+		if (luaL_dofile(m_pLuaState, "./Script/Sample01.lua")) {
 			const char *pError = lua_tostring(m_pLuaState, -1);
 			sprintf_s(szDbgString, "error running function `f': %s\n", pError);
 			OutputDebugStringA(szDbgString);
@@ -199,7 +199,7 @@ void CLuaSampleDlg::OnBnClickedExample02Button()
 		m_pLuaState = luaL_newstate();
 		if (NULL == m_pLuaState) __leave;
 
-		if (luaL_dofile(m_pLuaState, "Sample02.lua")) {
+		if (luaL_dofile(m_pLuaState, "./Script/Sample02.lua")) {
 			const char *pError = lua_tostring(m_pLuaState, -1);
 			sprintf_s(szDbgString, "error running function `f': %s\n", pError);
 			OutputDebugStringA(szDbgString);
