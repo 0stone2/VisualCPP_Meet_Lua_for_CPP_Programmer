@@ -8,8 +8,10 @@
 #include "afxdialogex.h"
 
 
-#include "C:/Lua/Library/include/lua.hpp"
-#include "C:/Lua/Library/include/luaconf.h"
+#include "C:/Script/Lua/Library/include/lua.hpp"
+#include "C:/Script/Lua/Library/include/luaconf.h"
+
+#pragma comment(lib, "C:/Script/Lua/Library/x86/lua53.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -24,7 +26,9 @@ public:
 	CAboutDlg();
 
 // 대화 상자 데이터입니다.
+#ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
+#endif
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
@@ -34,7 +38,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
+CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
 {
 }
 
@@ -52,7 +56,7 @@ END_MESSAGE_MAP()
 
 
 CLuaSampleDlg::CLuaSampleDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(CLuaSampleDlg::IDD, pParent)
+	: CDialogEx(IDD_LUASAMPLE_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -66,9 +70,9 @@ BEGIN_MESSAGE_MAP(CLuaSampleDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_SAMPLE1_BUTTON, &CLuaSampleDlg::OnBnClickedSample1Button)
-	ON_BN_CLICKED(IDC_SAMPLE2_BUTTON, &CLuaSampleDlg::OnBnClickedSample2Button)
-	ON_BN_CLICKED(IDC_SAMPLE3_BUTTON, &CLuaSampleDlg::OnBnClickedSample3Button)
+	ON_BN_CLICKED(IDC_EXAMPLE01_BUTTON, &CLuaSampleDlg::OnBnClickedExample01Button)
+	ON_BN_CLICKED(IDC_EXAMPLE02_BUTTON, &CLuaSampleDlg::OnBnClickedExample02Button)
+	ON_BN_CLICKED(IDC_EXAMPLE03_BUTTON, &CLuaSampleDlg::OnBnClickedExample03Button)
 END_MESSAGE_MAP()
 
 
@@ -157,10 +161,12 @@ HCURSOR CLuaSampleDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-void CLuaSampleDlg::OnBnClickedSample1Button()
+
+
+void CLuaSampleDlg::OnBnClickedExample01Button()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	char			szDbgString[MAX_PATH]{0, };
+	char			szDbgString[MAX_PATH]{ 0, };
 	lua_State *		m_pLuaState{ NULL };
 
 	__try {
@@ -180,10 +186,10 @@ void CLuaSampleDlg::OnBnClickedSample1Button()
 }
 
 
-void CLuaSampleDlg::OnBnClickedSample2Button()
+void CLuaSampleDlg::OnBnClickedExample02Button()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	char			szDbgString[MAX_PATH]{0, };
+	char			szDbgString[MAX_PATH]{ 0, };
 	lua_State *		m_pLuaState{ NULL };
 	const char *	szWelcomMessage{ NULL };
 	const char *	szWhoamI{ NULL };
@@ -217,7 +223,7 @@ void CLuaSampleDlg::OnBnClickedSample2Button()
 			__leave;
 		}
 		szWelcomMessage = lua_tostring(m_pLuaState, -2);
-		
+
 
 		/*
 		Executing Lua Code
@@ -314,7 +320,7 @@ void CLuaSampleDlg::OnBnClickedSample2Button()
 }
 
 
-void CLuaSampleDlg::OnBnClickedSample3Button()
+void CLuaSampleDlg::OnBnClickedExample03Button()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }

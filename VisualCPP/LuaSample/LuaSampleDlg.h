@@ -13,7 +13,9 @@ public:
 	CLuaSampleDlg(CWnd* pParent = NULL);	// 표준 생성자입니다.
 
 // 대화 상자 데이터입니다.
+#ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_LUASAMPLE_DIALOG };
+#endif
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 지원입니다.
@@ -30,7 +32,7 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedSample1Button();
-	afx_msg void OnBnClickedSample2Button();
-	afx_msg void OnBnClickedSample3Button();
+	afx_msg void OnBnClickedExample01Button();
+	afx_msg void OnBnClickedExample02Button();
+	afx_msg void OnBnClickedExample03Button();
 };
